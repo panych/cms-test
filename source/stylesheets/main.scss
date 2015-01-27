@@ -1,0 +1,172 @@
+@mixin clearfix {
+  &:before, &:after {
+    content: '';
+    display: table;
+    width: 100%;
+  }
+
+  &:after {
+    clear: both;
+  }
+}
+
+@mixin medium {
+  @media (min-width: 700px) {
+    @content;
+  }
+}
+
+@mixin big {
+  @media (min-width: 1024px) {
+    @content;
+  }
+}
+
+
+$fz: 14px;
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+
+// Set default box-sizing
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+
+body {
+  font-size: $fz;
+  font-family: sans-serif;
+  line-height: 1.3;
+}
+
+
+.top-pannel {
+  overflow: hidden;
+  border: 1px solid black;
+
+
+  &__box {
+    display: block;
+    overflow: hidden;
+    border: 5px solid #ECD7D7;
+    padding: 10px;
+    min-height: 130px;
+    
+
+    > img {
+      float: left;
+      margin: 0 10px 0 0;
+    }
+  }
+}
+
+@include medium {
+  .top-pannel__box {
+    float: left;
+    width: 50%;
+  }
+}
+
+
+.boxes {
+  margin: 0 2%;
+  font-size: 0;
+  max-width: 1000px;
+}
+
+
+.box {
+  font-size: $fz;
+  display: inline-block;
+  vertical-align: top;
+  width: 49%;
+  padding: 10px;
+  background: #ECEAEA;
+  margin: 2% 0 0 2%;
+
+  &:nth-child(odd) {
+    margin-left: 0;
+  }
+
+  > img {
+    float: left;
+    margin: 0 5px 5px 0;
+  }
+}
+
+@include medium {
+  .boxes {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .box {
+    width: 32%;
+    margin-left: 2%;
+
+    &:nth-child(odd) {
+      margin-left: 2%;
+    }
+
+    &:nth-child(3n+1) {
+      margin-left: 0;
+    }
+  }
+}
+
+
+@include big {
+  .boxes {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+
+.vk {
+  max-width: 1000px;
+  margin: 50px auto;
+}
+
+
+#people {
+  position: relative;
+  margin: 0 0 3em;
+  padding: 0;
+
+  &:before {
+    display: none;
+
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255,255,255,0.7);
+  }
+
+  li {
+    margin: 0 0 1em;
+  }
+
+  li img {
+    vertical-align: middle;
+    margin: 0 10px 0 0;
+    width: 50px;
+    height: 50px;
+  }
+}
+
+#people[data-loading="loading"] {
+  &:before {
+    display: block;
+  }
+}
